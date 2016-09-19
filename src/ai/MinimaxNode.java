@@ -10,6 +10,8 @@ public class MinimaxNode
     public int value;
     public ArrayList<MinimaxNode> children;
     public int player;
+    // Number representing which bowl this node is
+    public int moveIndex;
 
     public MinimaxNode(int value, int player)
     {

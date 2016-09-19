@@ -55,12 +55,19 @@ public class MinimaxTree
                 if(currentPlayer == thisPlayer)
                 {
                     if(child.value > totalValue)
+                    {
                         totalValue = child.value;
+                        child.moveIndex = i;
+                    }
+
                 }
                 else
                 {
                     if(child.value < totalValue)
+                    {
                         totalValue = child.value;
+                        child.moveIndex = i;
+                    }
                 }
             }
         }
