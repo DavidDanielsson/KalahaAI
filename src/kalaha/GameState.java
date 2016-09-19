@@ -406,7 +406,7 @@ public class GameState
         
         return -1;
     }
-    
+
     /**
      * Returns the number of possible valid moves (non-empty
      * ambos) for the specified player in this game state.

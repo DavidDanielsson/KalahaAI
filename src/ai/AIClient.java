@@ -212,9 +212,26 @@ public class AIClient implements Runnable
      */
     public int getMove(GameState currentBoard)
     {
-        int myMove = getRandom();
-        return myMove;
+        MinimaxTree tree = new MinimaxTree(currentBoard, currentBoard.getNextPlayer(),5);
+
+//
+//        for (int i=0;i<6;i++)
+//        {
+//            int startScore = currentBoard.getScore(currentBoard.getNextPlayer());
+//            if(currentBoard.moveIsPossible(i))
+//            {
+//                GameState boardClone = currentBoard.clone();
+//                boardClone.makeMove(i);
+//                int endScore = boardClone.getScore(1);
+//                int dif = endScore - startScore;
+//            }
+//        }
+//        int myMove = getRandom();
+
+        return 0;
     }
+
+
     
     /**
      * Returns a random ambo number (1-6) used when making
