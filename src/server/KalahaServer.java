@@ -44,22 +44,21 @@ public class KalahaServer implements Runnable
     public void start()
     {
         nextClient = 0;
-	game = new GameState();
-	g = ServerGUI.getInstance();
-        
+        game = new GameState();
+        g = ServerGUI.getInstance();
+
         try
-	{
+        {
             g.addText("Starting server at port " + KalahaMain.port);
             ssocket = new ServerSocket(KalahaMain.port);
             g.addText("Server started successfully");
             clients = new ClientThread[2];
-	}
-	catch(Exception ex)
-	{
+        } catch (Exception ex)
+        {
             g.addText("ERROR: Could not start server on port " + KalahaMain.port + ": " + ex.getMessage());
             return;
-	}
-        
+        }
+
         //Start the client listener thread
         Thread thr = new Thread(this);
         thr.start();
