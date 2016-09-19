@@ -26,27 +26,32 @@ public class MinimaxTree
 
         if(depth >= maxDepth)
             return;
-        int totalValue = 0;
+        int totalValue;
         int currentPlayer = currentBoard.getNextPlayer();
+
+        if(currentPlayer == thisPlayer)
+        {
+            totalValue = Integer.MIN_VALUE;
+        }
+        else
+        {
+            totalValue = Integer.MAX_VALUE;
+        }
+
+
         // Iterate through all bowls
         for (int i=1;i<7;i++)
         {
             // Get score of player so we can later compare after a move
-            //int startScore = currentBoard.getScore(currentPlayer);
             if(currentBoard.moveIsPossible(i))
             {
                 GameState boardClone = currentBoard.clone();
                 boardClone.makeMove(i);
-                int endScore = boardClone.getScore(currentPlayer);
-                //int dif = endScore - startScore;
-                // Flip score if it's the other guy, since we only want max to get positive scores
-                if(currentPlayer != thisPlayer)
-                {
-                    endScore *= -1;
-                }
-                MinimaxNode child = new MinimaxNode(endScore, currentPlayer);
+                int utility = GetUtilityValue(boardClone);
+                MinimaxNode child = new MinimaxNode(utility, currentPlayer);
                 currentNode.children.add(child);
                 BuildNode(child, boardClone, depth+1);
+
                 if(currentPlayer == thisPlayer)
                 {
                     if(child.value > totalValue)
@@ -60,5 +65,13 @@ public class MinimaxTree
             }
         }
         currentNode.value = totalValue;
+    }
+    /**
+     * Returns utility value for a given board. Call after having made a move to
+     * see the value after it. Utility value is the difference is score between
+     * the two players.*/
+    int GetUtilityValue(GameState currentBoard)
+    {
+        return currentBoard.getScore(thisPlayer) - currentBoard.getScore((~thisPlayer)&0b11);
     }
 }
