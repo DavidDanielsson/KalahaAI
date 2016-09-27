@@ -212,9 +212,9 @@ public class AIClient implements Runnable
      */
     public int getMove(GameState currentBoard)
     {
-        MinimaxTree tree = new MinimaxTree(currentBoard, currentBoard.getNextPlayer(),5);
-        int max = 0;
-        int index = 0;
+        MinimaxTree tree = new MinimaxTree(currentBoard, currentBoard.getNextPlayer(), 5);
+        int max = Integer.MIN_VALUE;
+        int index = -1;
 
         for (MinimaxNode node : tree.root.children)
         {
